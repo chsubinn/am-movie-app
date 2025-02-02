@@ -2,6 +2,9 @@
 LG CNS AM inpsire camp에서 진행한 두번째 개인 프로젝트입니다.
 DB에서 영화 정보를 불러와 목록으로 표시하고, 상세 정보를 수정 및 삭제할 수 있습니다.
 
+## 기술스택
+- Thymeleaf, Spring Boot, Bootstrap, Java, HTML/CSS
+
 
 ## 페이지별 소개
 1. 전체 목록 조회
@@ -19,6 +22,7 @@ DB에서 영화 정보를 불러와 목록으로 표시하고, 상세 정보를 
    - 영화 상세 정보를 조회합니다.
    - Edit 버튼을 클릭하여 영화 정보를 수정하는 페이지로 전환합니다.
    - Delete 버튼을 클릭하면 즉시 영화 정보가 삭제됩니다.
+   - 아래 버튼을 눌러 영화 포스터를 다운로드/업로드 할 수 있습니다. 
 <br><br/>
    <img width="1138" alt="image" src="https://github.com/user-attachments/assets/a56586db-a0b1-419e-a52a-1f63950c1023" />
 
