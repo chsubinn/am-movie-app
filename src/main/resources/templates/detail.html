@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .movie-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .movie-img {
+            width: 100%;
+            height: 100%; /* 높이를 100%로 조정 */
+            object-fit: cover; /* 비율 유지하며 꽉 채우기 */
+            max-height: 500px; /* 높이 제한 */
+        }
+
+        .movie-description {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            max-height: 400px;
+        }
+
+        .movie-info {
+            margin-top: 30px;
+        }
+
+        .movie-details {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .movie-info-left {
+            width: 60%;
+        }
+
+        .movie-images-right {
+            width: 35%;
+        }
+
+        .movie-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .btn-action {
+            width: 32%;
+            font-size: 1rem;
+            padding: 10px;
+        }
+
+        /* form 스타일 초기화 */
+        form {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 삭제 버튼 스타일 변경 */
+        form button[type="submit"] {
+            width: auto;        /* 자동 너비 */
+            min-width: 150px;   /* 최소 너비 */
+            font-size: 1rem;    /* 폰트 크기 */
+            padding: 10px;      /* 패딩 */
+            margin: 0;          /* 마진 초기화 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="movie-title" th:text="${movie.title}">Movie Title</h1>
+
+    <div class="movie-details">
+        <!-- 영화 정보 (왼쪽) -->
+        <div class="movie-info-left">
+            <div class="movie-info">
+                <h3>Director: <span th:text="${movie.director}">Director Name</span></h3>
+                <p><strong>Genre: </strong><span th:text="${movie.genre}">Genre</span></p>
+                <p><strong>Release Date: </strong>
+                    <span th:text="${#dates.format(movie.releaseDate, 'yyyy년 MM월 dd일')}">Release Date</span>
+                </p>
+                <p><strong>Rating: </strong><span th:text="${movie.rating}">Rating</span></p>
+
+                <!-- 영화 설명 -->
+                <div class="movie-description">
+                    <p><strong>Description: </strong><span th:text="${movie.description}">Movie Description</span></p>
+                </div>
+            </div>
+
+            <!-- 수정/삭제 버튼들 -->
+            <div class="movie-actions">
+                <!-- 수정 버튼 -->
+                <a th:href="@{/movie/{id}/update(id=${movie.id})}" class="btn btn-primary btn-action">Edit</a>
+
+                <!-- 삭제 폼 -->
+                <form th:action="@{/movie/{id}/delete(id=${movie.id})}" method="post">
+                    <button type="submit" class="btn btn-danger btn-action">Delete</button>
+                </form>
+
+                <!-- 돌아가기 버튼 -->
+                <a href="/movie/home" class="btn btn-secondary btn-action">Back</a>
+            </div>
+        </div>
+
+        <!-- 영화 이미지 (오른쪽) -->
+        <div class="movie-images-right">
+            <div id="movieImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- 반복문을 통해 포스터 이미지 출력 -->
+                    <div th:each="posterUrl, iterStat : ${posters}" class="carousel-item"
+                         th:classappend="${iterStat.index == 0} ? ' active' : ''">
+                        <img th:src="${posterUrl}" class="movie-img d-block w-100" alt="Movie Image">
+                    </div>
+                </div>
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#movieImagesCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#movieImagesCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

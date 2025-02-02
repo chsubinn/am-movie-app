@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: movie-app
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      #      ddl-auto: update
+      ddl-auto: create-drop
+    show-sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true
