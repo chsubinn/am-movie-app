@@ -24,12 +24,10 @@ DB에서 영화 정보를 불러와 목록으로 표시하고, 상세 정보를 
    - Delete 버튼을 클릭하면 즉시 영화 정보가 삭제됩니다.
    - 아래 버튼을 눌러 영화 포스터를 다운로드/업로드 할 수 있습니다. 
 <br><br/>
-   <img width="1138" alt="image" src="https://github.com/user-attachments/assets/a56586db-a0b1-419e-a52a-1f63950c1023" />
 
 
 3. 영화 수정
    - Endpoint: /movie/update/{id}
    - 영화 정보를 수정합니다.
   <br><br/>
-     <img width="835" alt="image" src="https://github.com/user-attachments/assets/2bce58bf-0a62-42ae-856b-d47693954602" />
 
